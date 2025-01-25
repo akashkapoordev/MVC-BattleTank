@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class TankSpwaner : MonoBehaviour
 {
-    public GameObject tankPrefab;
-    // Start is called before the first frame update
-    void Start()
+    public TankView tankView;
+
+
+    private void Start()
     {
-        Instantiate(tankPrefab,transform.position, Quaternion.identity);
+        createTank();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void createTank()
     {
-        
+        TankModel tankModel = new TankModel();
+        TankController tankController = new TankController(tankModel, tankView);
     }
 }
