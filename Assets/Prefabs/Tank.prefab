@@ -251,6 +251,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 5799632343027234804}
+  childs:
+  - {fileID: 9000269675303178697}
+  - {fileID: 4629355346280176773}
+  - {fileID: 4412923820931349561}
+  - {fileID: 1540283392195234231}
 --- !u!54 &5799632343027234804
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -276,7 +281,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 16
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!65 &4276886061591070712
 BoxCollider:

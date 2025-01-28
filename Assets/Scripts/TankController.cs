@@ -17,6 +17,7 @@ public class TankController
 
         _tankModel.setTankController(this);
         _tankView.setTankController(this);
+        _tankView.ChangeColor(_tankModel.color);
     }
 
 
@@ -30,6 +31,8 @@ public class TankController
         Vector3 vector = new Vector3(0f,rotate * rotationSpeed,0f);
         Quaternion deltaRotation = Quaternion.Euler(vector * Time.deltaTime);
         rb.MoveRotation(rb.rotation* deltaRotation);
+
+        
     }
 
     public TankModel GetModel()
