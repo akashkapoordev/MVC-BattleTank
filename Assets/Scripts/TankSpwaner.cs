@@ -7,15 +7,25 @@ public class TankSpwaner : MonoBehaviour
     public TankView tankView;
 
     public List<Tank> tanks;
-
-    private void Start()
+    public void createTank(TankType tankType)
     {
-        createTank();
-    }
+        if(tankType == TankType.GreenTank)
+        {
+            TankModel tankModel = new TankModel(tanks[0].movementSpeed, tanks[0].rotationSpeed, tanks[0].type, tanks[0].color);
+            TankController tankController = new TankController(tankModel, tankView);
+        }
 
-    public void createTank()
-    {
-        TankModel tankModel = new TankModel(tanks[1].movementSpeed, tanks[1].rotationSpeed, tanks[1].type, tanks[1].color);
-        TankController tankController = new TankController(tankModel, tankView);
+        if (tankType == TankType.BlueTank)
+        {
+            TankModel tankModel = new TankModel(tanks[1].movementSpeed, tanks[1].rotationSpeed, tanks[1].type, tanks[1].color);
+            TankController tankController = new TankController(tankModel, tankView);
+        }
+
+        if (tankType == TankType.RedTank)
+        {
+            TankModel tankModel = new TankModel(tanks[2].movementSpeed, tanks[2].rotationSpeed, tanks[2].type, tanks[2].color);
+            TankController tankController = new TankController(tankModel, tankView);
+        }
+
     }
 }
