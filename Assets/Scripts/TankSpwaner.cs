@@ -14,7 +14,7 @@ public class TankSpwaner : MonoBehaviour
 
     public void createTank()
     {
-        TankModel tankModel = new TankModel();
+        TankModel tankModel = new TankModel(30,20);
         TankController tankController = new TankController(tankModel, tankView);
     }
 }
