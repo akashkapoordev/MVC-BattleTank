@@ -6,18 +6,19 @@ public class TankController
 {
     private TankModel _tankModel;
     private TankView _tankView;
+    private CameraController cameraController;
 
     Rigidbody rb;
-    public TankController(TankModel tankModel, TankView tankView)
+    public TankController(TankModel tankModel, TankView tankView, CameraController cam)
     {
         _tankModel = tankModel;
         _tankView = GameObject.Instantiate<TankView>(tankView);
         rb = _tankView.GetRigidbody();
-
+        cameraController = cam;
 
         _tankModel.setTankController(this);
         _tankView.setTankController(this);
-        _tankView.ChangeColor(_tankModel.color);
+        cameraController.setPlayer(_tankView.transform);
     }
 
 
@@ -35,9 +36,26 @@ public class TankController
         
     }
 
+
     public TankModel GetModel()
     {
         return _tankModel;
     }
+
+    public void FireBullet()
+    {
+        GameObject bullet = GameObject.Instantiate(_tankView.bulletPrefab, _tankView.fireTransform.position, _tankView.fireTransform.rotation);
+        Rigidbody  rbBullet = bullet.GetComponent<Rigidbody>();
+        rbBullet.velocity = _tankModel.CurrentLaunchForce * _tankView.fireTransform.forward;
+
+        ShellScript shellScript = rbBullet.GetComponent<ShellScript>();
+        shellScript.setProperties(_tankView.explosionPrefab, cameraController);
+        
+        _tankModel.SetCurrentForce(_tankModel.MinForce);
+        _tankModel.SetFired(true);
+
+    }
+
+    
 
 }

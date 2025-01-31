@@ -6,5 +6,5 @@ public class Tank
     public float movementSpeed;
     public float rotationSpeed;
     public TankType type;
-    public Material color;
+    public GameObject tankPrefab;
 }
