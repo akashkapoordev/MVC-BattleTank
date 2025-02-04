@@ -14,6 +14,7 @@ public class TankView : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform fireTransform;
     public GameObject explosionPrefab;
+    bool isMoving;
     
     public void setTankController(TankController tankController)
     {
@@ -23,18 +24,23 @@ public class TankView : MonoBehaviour
 
     private void Start()
     {
-        GameObject cam = GameObject.Find("Main Camera");
-
-        _tankController.GetModel().ResetLaunchForce();
+        if(_tankController != null)
+        {
+            _tankController.GetModel().ResetLaunchForce();
+        }
     }
 
     private void Update()
     {
-        Movement();
+        if (_tankController != null)
+        {
+            Movement();
 
-        HandleInput();
+            HandleInput();
 
-        HandleFiring();
+            HandleFiring();
+        }
+
     }
 
 
@@ -46,14 +52,31 @@ public class TankView : MonoBehaviour
 
     public void HandleInput()
     {
-        if (movement != 0)
+        if (movement != 0 || rotation != 0)
         {
-            _tankController.Move(movement, _tankController.GetModel().MovementSpeed);
-        }
+            if (!isMoving)
+            {
+                //SoundManager.Instance.PlaySoundEffect(SoundType.ENGINE_START);
+                isMoving = true;
+            }
 
-        if (rotation != 0)
+            if (movement != 0)
+            {
+                _tankController.Move(movement, _tankController.GetModel().MovementSpeed);
+            }
+
+            if (rotation != 0)
+            {
+                _tankController.Rotate(rotation, _tankController.GetModel().RotationSpeed);
+            }
+        }
+        else
         {
-            _tankController.Rotate(rotation, _tankController.GetModel().RotationSpeed);
+            if (isMoving)
+            {
+               // SoundManager.Instance.PlaySoundEffect(SoundType.ENGINE_IDLE);
+                isMoving = false;
+            }
         }
     }
 

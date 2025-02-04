@@ -32,5 +32,7 @@ public class TankSpwaner : MonoBehaviour
             TankController tankController = new TankController(tankModel, tankView, controller);
         }
 
+
+
     }
 }

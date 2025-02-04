@@ -20,6 +20,7 @@ public class ShellScript : MonoBehaviour
             CameraController.CameraShake();
 
         }
+        //SoundManager.Instance.PlaySoundEffect(SoundType.SHELL_EXPLOSION);
 
         Destroy(explosion, particleSystem.main.duration);
         Destroy(gameObject);

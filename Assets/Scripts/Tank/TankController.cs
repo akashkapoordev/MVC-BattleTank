@@ -1,4 +1,4 @@
-using System.Collections;
+ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +44,8 @@ public class TankController
 
     public void FireBullet()
     {
+        SoundManager.Instance.PlaySoundEffect(SoundType.SHELL_FIRE);
+
         GameObject bullet = GameObject.Instantiate(_tankView.bulletPrefab, _tankView.fireTransform.position, _tankView.fireTransform.rotation);
         Rigidbody  rbBullet = bullet.GetComponent<Rigidbody>();
         rbBullet.velocity = _tankModel.CurrentLaunchForce * _tankView.fireTransform.forward;
